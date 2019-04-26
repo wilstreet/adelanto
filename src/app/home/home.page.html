@@ -1,0 +1,48 @@
+<ion-header>
+   
+      <ion-searchbar placeholder="Buscar" type="menu" color="secondary"></ion-searchbar>
+  
+</ion-header>
+
+
+<agm-map [latitude]="  4.662387"
+ [longitude]=" -74.069037"
+ [zoom]="18"
+ [disableDefaultUI]="false"
+ [zoomControl]="true"
+ (mapClick)="mapClicked=($event)">
+
+
+
+  <agm-marker
+  *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"  
+      (dragEnd)="markerDragEnd(m, $event)">
+
+  <agm-info-window>
+    <ion-button expand="block" color="secondary" [routerLink]="['/inventario']" routerLinkActive="router-link-active">
+      <ion-icon name="pin"></ion-icon> </ion-button>
+    </agm-info-window>
+  
+</agm-marker>
+
+<agm-circle [latitude]="4.662387" [longitude]="-74.069037" 
+[radius]="0"
+[fillColor]="'turquoise'"
+[circleDraggable]="true"
+[editable]="true">
+</agm-circle>
+  <ion-content>
+      <!-- fab placed to the top end -->
+      <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      </ion-content>
+  
+</agm-map> 
